@@ -1,8 +1,24 @@
 version: "3"
-services: 
-    coreui:
-        build: 
-            context: ./coreui
+services:
+    postgres:
+        image: postgres:13-alpine
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: Datapilot
+            POSTGRES_DB: datapilot
+            PGDATA: /var/lib/postgresql/data/pgdata
+        volumes:
+            - ../../.pgdata:/var/lib/postgresql/data/pgdata
         ports:
-            - "18080:80"
+            - 5432:5432
+
+    api:
+        image: alpine
+
+
+#    coreui:
+#        build:
+#            context: ./coreui
+#        ports:
+#            - "18080:80"
 
