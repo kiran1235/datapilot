@@ -1,0 +1,8 @@
+version: "3"
+services: 
+    coreui:
+        build: 
+            context: ./coreui
+        ports:
+            - "18080:80"
+

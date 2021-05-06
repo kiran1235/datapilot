@@ -1,0 +1,4 @@
+.conda/
+.node/
+**/node_modules
+/src/ui/react/datapilot/node_modules/
