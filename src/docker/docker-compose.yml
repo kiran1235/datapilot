@@ -1,6 +1,12 @@
 version: "3"
 services:
-    postgres:
+#    coreui:
+#        build:
+#            context: ./coreui
+#        ports:
+#            - "18080:80"
+
+    datapilot_postgres:
         image: postgres:13-alpine
         restart: always
         environment:
@@ -12,13 +18,33 @@ services:
         ports:
             - 5432:5432
 
-    api:
-        image: alpine
+    datapilot_redis:
+        image: redis:6-alpine3.13
+        restart: always
+        ports:
+            - 6379:6379
 
+    datapilot_rabbitmq:
+        image: rabbitmq:3.8.16-management-alpine
+        restart: always
+        ports:
+            - 15672:15672
 
-#    coreui:
-#        build:
-#            context: ./coreui
-#        ports:
-#            - "18080:80"
+    datapilot_api:
+        build:
+            context: ../../src/api/python/datapilot
+        restart: always
+        ports:
+            - 3030:3030
+        volumes:
+            - ../../src/api/python/datapilot:/app
+
+    datapilot_app:
+        build:
+            context: ../../src/ui/react/datapilot
+        restart: always
+        ports:
+            - 3000:3000
+        volumes:
+            - ../../src/ui/react/datapilot:/app
 
