@@ -4,6 +4,7 @@
 .pgdata/
 .conda/
 .venv/
+.vscode/
 .node/
 **/node_modules
 /node_modules
