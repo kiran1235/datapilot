@@ -4,7 +4,13 @@ flask-cors
 flask-cors
 flask-sqlalchemy
 Flask-PyMemcache
+Flask-OpenID
+
+marshmallow
 click==7.1.2
 gunicorn
 celery
-jq
+jmespath
+toolz
+python-dotenv
+psycopg2-binary

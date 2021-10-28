@@ -1,0 +1,33 @@
+version: '3.1'
+volumes:
+  pgdata:
+    name: datapliot_pgdata_001
+services:
+  metadata:
+    image: "postgres:11.13-alpine"
+    restart: always
+    environment:
+      POSTGRES_USER: datapliot
+      POSTGRES_PASSWORD: datapliot
+      POSTGRES_DB: datapliot
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  api:
+    build:
+      context: '../api'
+    restart: always
+    depends_on:
+        - metadata    
+    environment:
+      FLASK_ENVIRONMENT: 'dev'
+      SQLALCHEMY_DATABASE_URI:  'postgresql+psycopg2://datapliot:datapliot@metadata/datapliot'
+      SQLALCHEMY_ECHO: "true"
+      SQLALCHEMY_TRACK_MODIFICATIONS: "true"
+    volumes:
+      - ../api:/app
+    ports:
+      - 1235:1235
+

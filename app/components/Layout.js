@@ -13,7 +13,7 @@ const Layout = ({children}) => {
                     <CNavbarBrand href="#">Fixed top</CNavbarBrand>
                 </CContainer>
             </CNavbar>
-            <div style={{marginTop: '3.5em'}}>
+            <div style={{marginTop: '4em', marginLeft: '1em'}}>
             <CRow className="justify-content-start">
                 <CCol xs={2}>
                     <CSidebar>
@@ -41,7 +41,7 @@ const Layout = ({children}) => {
                     <CSidebarToggler />
                     </CSidebar>                    
                 </CCol>
-                <CCol xs={9}>
+                <CCol xs={8}>
                     {children}
                 </CCol>
             </CRow>
